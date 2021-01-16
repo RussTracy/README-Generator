@@ -1,2 +1,3 @@
-# README-Generator
-Node.js application that will generate a README file for git projects based on user input.
+# Professional README Generator Starter Code
+
+[How to create a Professional README](./readme-guide.md)
