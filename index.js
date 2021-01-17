@@ -1,18 +1,36 @@
-const fs = require('fs');
+const inquirer = require('inquirer');
 
-const generatePage = require('./src/page-template.js');
+inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is your name?'
+        }
+    ])
+    .then(answers => console.log(answers));
 
-const readmeDataArgs = process.argv.slice(2);
 
-const [projectTitle, description] = readmeDataArgs;
+// const fs = require('fs');
+
+// const generatePage = require('./src/page-template.js');
+
+// const pageMarkdown = generatePage(projectTitle, description);
+
+
+// fs.writeFile('README.md', pageMarkdown, err => {
+//     if (err) throw err;
+
+//     console.log('README complete! Check out README.MD to see the output!');
+// });
 
 
 
-fs.writeFile('README.md', generatePage(projectTitle, description), err => {
-    if (err) throw err;
 
-    console.log('README complete! Check out README.MD to see the output!');
-});
+
+
+
+
 // const readmeDataArgs = process.argv.slice(2, process.argv.length);
 // console.log(readmeDataArgs);
 
