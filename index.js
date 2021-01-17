@@ -1,11 +1,26 @@
-const readmeDataArgs = process.argv.slice(2, process.argv.length);
-console.log(readmeDataArgs);
+const fs = require('fs');
 
-const printReadmeData = readmeDataArr => {
-    readmeDataArr.forEach(readmeItem => console.log(readmeItem));
-};
+const generatePage = require('./src/page-template.js');
 
-printReadmeData(readmeDataArgs);
+const readmeDataArgs = process.argv.slice(2);
+
+const [projectTitle, description] = readmeDataArgs;
+
+
+
+fs.writeFile('README.md', generatePage(projectTitle, description), err => {
+    if (err) throw err;
+
+    console.log('README complete! Check out README.MD to see the output!');
+});
+// const readmeDataArgs = process.argv.slice(2, process.argv.length);
+// console.log(readmeDataArgs);
+
+// const printReadmeData = readmeDataArr => {
+//     readmeDataArr.forEach(readmeItem => console.log(readmeItem));
+// };
+
+// printReadmeData(readmeDataArgs);
 
 // // TODO: Include packages needed for this application
 // const fs = require('fs');

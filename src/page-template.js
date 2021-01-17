@@ -1,8 +1,9 @@
-# Run Buddy
+const generatePage = (projectTitle, description) => {
+    return `# ${projectTitle}
 
 ## Description
 
-Run Buddy is a really cool website
+${description}
 
 ## Table of Contents (Optional)
 
@@ -23,9 +24,9 @@ Provide instructions and examples for use. Include screenshots as needed.
 
 To add a screenshot, create an 'assets / images' folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
-```md
+\`\`\`md
     ![alt text](assets / images / screenshot.png)
-```
+\`\`\`
 
 
 ## Credits
@@ -65,3 +66,7 @@ If you created an application or package and would like other developers to cont
 ## Tests
 
 Go the extra mile and write tests for your application. Then provide examples on how to run them.
+`;
+}
+
+module.exports = generatePage;
