@@ -209,7 +209,7 @@ questions()
         const pageMarkdown = generateMarkdown(answers);
 
         // TODO: Create a function to write README file
-        fs.writeFile('README.md', pageMarkdown, err => {
+        fs.writeFile('./dist/README.md', pageMarkdown, err => {
             if (err) throw err;
 
             console.log('README complete! Check out README.MD to see the output!');
