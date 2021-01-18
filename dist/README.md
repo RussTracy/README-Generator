@@ -26,13 +26,13 @@ No install required
 
 # Credits
 
-Made by [This programmer]
+Made by [This Programmer]
 
 # Questions
 
 [Contact Me](noemail@noneatall.com)
 
-[GitHub](https://github.com/github)
+[GitHub](https://github.com/githubuser)
 
 # License
     
