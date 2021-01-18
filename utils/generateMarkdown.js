@@ -121,7 +121,7 @@ const tableOfContentsTests = tests => {
 
 module.exports = generateMarkdown => {
   const { projectName, description, installation, usage, credits, github, email, ...notRequired } = generateMarkdown;
-  console.log(generateMarkdown);
+  //console.log(generateMarkdown);
 
   return `# ${projectName}
     ${renderLicenseBadge(notRequired.license)}
