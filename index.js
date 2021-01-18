@@ -1,8 +1,9 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
+const fs = require('fs');
+const generateMarkdown = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
-
 const questions = () => {
     return inquirer.prompt([
         {
@@ -36,20 +37,6 @@ const questions = () => {
             name: 'confirmTableOfContents',
             message: 'Would you like to add a Table of Contents?',
             default: true
-        },
-        {
-            type: 'checkbox',
-            name: 'tableOfContents',
-            message: 'Select the items you would like in the Table of Contents.',
-            choices: ['Installation', 'Usage', 'Credits', 'License', 'Badges', 'Features', 'Contributing', 'Tests', 'Questions'],
-            when: ({ confirmTableOfContents }) => {
-                if (confirmTableOfContents) {
-                    return true;
-                }
-                else {
-                    return false;
-                };
-            }
         },
         {
             type: 'input',
@@ -91,14 +78,21 @@ const questions = () => {
             }
         },
         {
-            type: 'input',
+            type: 'confirm',
+            name: 'confirmLicense',
+            message: 'Would you like to add a License?',
+            default: false
+        },
+        {
+            type: 'list',
             name: 'license',
-            message: 'Provide the license for this project. (Required)',
-            validate: answerInput => {
-                if (answerInput) {
+            message: 'Select the license for this project.',
+            choices: ['MIT License', 'GNU General Public License v3.0', 'Mozilla Public License 2.0', 'The Unlicense'],
+            when: ({ confirmLicense }) => {
+                if (confirmLicense) {
                     return true;
-                } else {
-                    console.log('Please provide license information!');
+                }
+                else {
                     return false;
                 }
             }
@@ -120,7 +114,6 @@ const questions = () => {
                 else {
                     return false;
                 }
-
             }
         },
         {
@@ -140,7 +133,6 @@ const questions = () => {
                 else {
                     return false;
                 }
-
             }
         },
         {
@@ -160,7 +152,6 @@ const questions = () => {
                 else {
                     return false;
                 }
-
             }
         },
         {
@@ -180,7 +171,6 @@ const questions = () => {
                 else {
                     return false;
                 }
-
             }
         },
         {
@@ -210,54 +200,19 @@ const questions = () => {
             }
         }
 
-    ]);
+    ])
+
 };
 
-questions().then(answers => console.log(answers));
+questions()
+    .then(answers => {
+        const pageMarkdown = generateMarkdown(answers);
 
-// const fs = require('fs');
+        // TODO: Create a function to write README file
+        fs.writeFile('README.md', pageMarkdown, err => {
+            if (err) throw err;
 
-// const generatePage = require('./src/page-template.js');
+            console.log('README complete! Check out README.MD to see the output!');
+        });
 
-// const pageMarkdown = generatePage(projectTitle, description);
-
-
-// fs.writeFile('README.md', pageMarkdown, err => {
-//     if (err) throw err;
-
-//     console.log('README complete! Check out README.MD to see the output!');
-// });
-
-
-
-
-
-
-
-
-// const readmeDataArgs = process.argv.slice(2, process.argv.length);
-// console.log(readmeDataArgs);
-
-// const printReadmeData = readmeDataArr => {
-//     readmeDataArr.forEach(readmeItem => console.log(readmeItem));
-// };
-
-// printReadmeData(readmeDataArgs);
-
-// // TODO: Include packages needed for this application
-// const fs = require('fs');
-// const generateMarkdown = require('./utils/generateMarkdown.js');
-// const inquirer = requrie('inquirer');
-
-// // TODO: Create an array of questions for user input
-// const questions = [];
-
-// // TODO: Create a function to write README file
-// function writeToFile(fileName, data) { }
-
-// // TODO: Create a function to initialize app
-// function init() { }
-
-// // Function call to initialize app
-
-// getUserData();
+    });
